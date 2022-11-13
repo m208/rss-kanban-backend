@@ -17,7 +17,12 @@ export const signIn = async (req: Request, res: Response) => {
   if (foundedUser) {
     const isCorrectPassword = await checkPassword(password, foundedUser.password);
     if (isCorrectPassword) {
-      return res.send({ token: signToken(foundedUser._id, login) })
+      return res.send({ 
+        token: signToken(foundedUser._id, login),
+        id:  foundedUser._id,
+        name: foundedUser.name,
+        login: foundedUser.login,
+      })
     }
   }
 
